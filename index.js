@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -21,9 +22,15 @@ app.get("/fruits/banana", (req, res) => {
 
 app.get("/user/:id", (req, res) => {
   const id = req.params.id;
-  console.log(req.query.sort);
   const name = users[id];
   res.send({ id, name });
 });
+
+// Post
+app.post("/addUser", (req, res) => {
+  console.log(req.body);
+});
+
+app.use(bodyParser.json());
 
 app.listen(3000, () => console.log("Listening to Port 3000"));
